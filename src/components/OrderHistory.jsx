@@ -1,19 +1,24 @@
 import React from 'react';
+    import { useTranslation } from 'react-i18next';
 
     const OrderHistory = ({ orders }) => {
+      const { t } = useTranslation();
       return (
         <div className="order-history">
-          <h2>Order History</h2>
+          <h2>{t('orderHistoryTitle')}</h2>
           {orders.length === 0 ? (
-            <p>No orders placed yet.</p>
+            <p>{t('noOrders')}</p>
           ) : (
             orders.map((order, index) => (
               <div key={index} className="order-item">
-                <h3>Order #{index + 1}</h3>
+                <h3>
+                  {t('order')}
+                  {index + 1}
+                </h3>
                 <p>
-                  <strong>Order Date:</strong> {order.orderDate}
+                  <strong>{t('orderDate')}</strong> {order.orderDate}
                 </p>
-                <h4>Items:</h4>
+                <h4>{t('items')}</h4>
                 <ul>
                   {order.items.map((item) => (
                     <li key={item.id}>
@@ -21,21 +26,21 @@ import React from 'react';
                     </li>
                   ))}
                 </ul>
-                <h4>Shipping Address:</h4>
+                <h4>{t('shipping')}</h4>
                 <p>
-                  <strong>Name:</strong> {order.shippingAddress.name}
+                  <strong>{t('name')}</strong> {order.shippingAddress.name}
                 </p>
                 <p>
-                  <strong>Phone:</strong> {order.shippingAddress.phoneNumber}
+                  <strong>{t('phone')}</strong> {order.shippingAddress.phoneNumber}
                 </p>
                 <p>
-                  <strong>Street:</strong> {order.shippingAddress.street}
+                  <strong>{t('street')}</strong> {order.shippingAddress.street}
                 </p>
                 <p>
-                  <strong>City:</strong> {order.shippingAddress.city}
+                  <strong>{t('city')}</strong> {order.shippingAddress.city}
                 </p>
                 <p>
-                  <strong>Zip Code:</strong> {order.shippingAddress.zipCode}
+                  <strong>{t('zipCode')}</strong> {order.shippingAddress.zipCode}
                 </p>
               </div>
             ))

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
     import { Link } from 'react-router-dom';
+    import { useTranslation } from 'react-i18next';
 
     const menuItems = [
       {
@@ -53,6 +54,7 @@ import React, { useState } from 'react';
     ];
 
     const Menu = ({ addToCart, cart }) => {
+      const { t } = useTranslation();
       const [activeCategory, setActiveCategory] = useState('all');
 
       const filteredItems =
@@ -67,19 +69,19 @@ import React, { useState } from 'react';
               className={activeCategory === 'all' ? 'active' : ''}
               onClick={() => setActiveCategory('all')}
             >
-              All
+              {t('all')}
             </button>
             <button
               className={activeCategory === 'food' ? 'active' : ''}
               onClick={() => setActiveCategory('food')}
             >
-              Food
+              {t('food')}
             </button>
             <button
               className={activeCategory === 'drink' ? 'active' : ''}
               onClick={() => setActiveCategory('drink')}
             >
-              Drinks
+              {t('drinks')}
             </button>
           </div>
           <div className="menu-grid">
@@ -89,13 +91,13 @@ import React, { useState } from 'react';
                 <h3>{item.name}</h3>
                 <p>{item.description}</p>
                 <p>Price: ${item.price}</p>
-                <button onClick={() => addToCart(item)}>Add to Cart</button>
+                <button onClick={() => addToCart(item)}>{t('addToCart')}</button>
               </div>
             ))}
           </div>
           {cart.length > 0 && (
             <Link to="/cart">
-              <button className="view-cart-button">View Cart</button>
+              <button className="view-cart-button">{t('viewCart')}</button>
             </Link>
           )}
         </div>

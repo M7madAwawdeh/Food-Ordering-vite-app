@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
     import { Link } from 'react-router-dom';
+    import { useTranslation } from 'react-i18next';
 
     const Cart = ({ cart, removeFromCart, shippingAddress, placeOrder }) => {
+      const { t } = useTranslation();
       const [showShippingForm, setShowShippingForm] = useState(false);
 
       const calculateTotal = () => {
@@ -18,28 +20,31 @@ import React, { useState } from 'react';
 
       return (
         <div className="cart">
-          <h2>Shopping Cart</h2>
+          <h2>{t('cart')}</h2>
           {cart.length === 0 ? (
-            <p>Your cart is empty.</p>
+            <p>{t('yourCartEmpty')}</p>
           ) : (
             <>
               {cart.map((item, index) => (
                 <div key={index} className="cart-item">
                   <span>{item.name} - ${item.price}</span>
-                  <button onClick={() => removeFromCart(index)}>Remove</button>
+                  <button onClick={() => removeFromCart(index)}>{t('remove')}</button>
                 </div>
               ))}
-              <div className="total">Total: ${calculateTotal()}</div>
+              <div className="total">
+                {t('total')}
+                ${calculateTotal()}
+              </div>
               <button className="checkout-button" onClick={handleCheckout}>
-                Checkout
+                {t('checkout')}
               </button>
             </>
           )}
           {showShippingForm && (
-            <p>Please add shipping address in account settings</p>
+            <p>{t('pleaseAddShipping')}</p>
           )}
           <Link to="/">
-            <button className="checkout-button">Back to Menu</button>
+            <button className="checkout-button">{t('backToMenu')}</button>
           </Link>
         </div>
       );

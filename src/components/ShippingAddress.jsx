@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
     import { useNavigate } from 'react-router-dom';
+    import { useTranslation } from 'react-i18next';
 
     const ShippingAddress = ({ saveShippingAddress, initialAddress }) => {
+      const { t } = useTranslation();
       const navigate = useNavigate();
       const [name, setName] = useState('');
       const [phoneNumber, setPhoneNumber] = useState('');
@@ -28,7 +30,7 @@ import React, { useState, useEffect } from 'react';
 
       return (
         <form className="shipping-form" onSubmit={handleSubmit}>
-          <label>Name:</label>
+          <label>{t('nameLabel')}</label>
           <input
             type="text"
             value={name}
@@ -36,7 +38,7 @@ import React, { useState, useEffect } from 'react';
             required
           />
 
-          <label>Phone Number:</label>
+          <label>{t('phoneLabel')}</label>
           <input
             type="tel"
             value={phoneNumber}
@@ -44,7 +46,7 @@ import React, { useState, useEffect } from 'react';
             required
           />
 
-          <label>Street:</label>
+          <label>{t('streetLabel')}</label>
           <input
             type="text"
             value={street}
@@ -52,7 +54,7 @@ import React, { useState, useEffect } from 'react';
             required
           />
 
-          <label>City:</label>
+          <label>{t('cityLabel')}</label>
           <input
             type="text"
             value={city}
@@ -60,7 +62,7 @@ import React, { useState, useEffect } from 'react';
             required
           />
 
-          <label>Zip Code:</label>
+          <label>{t('zipCodeLabel')}</label>
           <input
             type="text"
             value={zipCode}
@@ -68,7 +70,7 @@ import React, { useState, useEffect } from 'react';
             required
           />
 
-          <button type="submit">Save Address</button>
+          <button type="submit">{t('saveAddress')}</button>
         </form>
       );
     };
