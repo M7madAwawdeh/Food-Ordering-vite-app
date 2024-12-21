@@ -409,3 +409,24 @@ body {
         margin-bottom: 5px;
       }
     }
+
+    .language-select {
+      margin-top: 20px;
+      width: 100%;
+    }
+
+    .language-select select {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #495057;
+      border-radius: 5px;
+      background-color: #fff;
+      color: #343a40;
+      cursor: pointer;
+      transition: border-color 0.3s ease;
+    }
+
+    .language-select select:focus {
+      outline: none;
+      border-color: #007bff;
+    }

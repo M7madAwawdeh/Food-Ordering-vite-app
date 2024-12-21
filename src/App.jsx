@@ -5,8 +5,10 @@ import React, { useState } from 'react';
     import ShippingAddress from './components/ShippingAddress';
     import AccountSettings from './components/AccountSettings';
     import OrderHistory from './components/OrderHistory';
+    import { useTranslation } from 'react-i18next';
 
     const App = () => {
+      const { t, i18n } = useTranslation();
       const [cart, setCart] = useState([]);
       const [shippingAddress, setShippingAddress] = useState(null);
       const [orders, setOrders] = useState([]);
@@ -45,6 +47,10 @@ import React, { useState } from 'react';
         setIsSidebarVisible(!isSidebarVisible);
       };
 
+      const changeLanguage = (lng) => {
+        i18n.changeLanguage(lng);
+      };
+
       return (
         <div className="app-container">
           <aside className={`sidebar ${isSidebarVisible ? '' : 'hidden'}`}>
@@ -54,22 +60,31 @@ import React, { useState } from 'react';
             >
               {isSidebarVisible ? '✕' : '☰'}
             </div>
-            <h2>FINTKS Food Ordering</h2>
+            <h2>{t('appTitle')}</h2>
             <ul>
               <li>
-                <Link to="/" onClick={() => setIsSidebarVisible(false)}>Home</Link>
+                <Link to="/" onClick={() => setIsSidebarVisible(false)}>{t('home')}</Link>
               </li>
               <li>
-                <Link to="/cart" onClick={() => setIsSidebarVisible(false)}>Cart</Link>
+                <Link to="/cart" onClick={() => setIsSidebarVisible(false)}>{t('cart')}</Link>
               </li>
               <li>
-                <Link to="/shipping" onClick={() => setIsSidebarVisible(false)}>Shipping Address</Link>
+                <Link to="/shipping" onClick={() => setIsSidebarVisible(false)}>{t('shippingAddress')}</Link>
               </li>
               <li>
-                <Link to="/orders" onClick={() => setIsSidebarVisible(false)}>Order History</Link>
+                <Link to="/orders" onClick={() => setIsSidebarVisible(false)}>{t('orderHistory')}</Link>
               </li>
               <li>
-                <Link to="/account" onClick={() => setIsSidebarVisible(false)}>Account Settings</Link>
+                <Link to="/account" onClick={() => setIsSidebarVisible(false)}>{t('accountSettings')}</Link>
+              </li>
+              <li className="language-select">
+                <select
+                  value={i18n.language}
+                  onChange={(e) => changeLanguage(e.target.value)}
+                >
+                  <option value="en">English</option>
+                  <option value="ar">العربية</option>
+                </select>
               </li>
             </ul>
           </aside>
@@ -82,7 +97,7 @@ import React, { useState } from 'react';
                 >
                   {isSidebarVisible ? '✕' : '☰'}
                 </div>
-                <h1>Food Ordering App</h1>
+                <h1>{t('menuTitle')}</h1>
               </div>
               <Routes>
                 <Route
